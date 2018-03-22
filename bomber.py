@@ -20,7 +20,7 @@ def create_bombfield(bombfield):
                 rowList.append(0)
                 squaresToClear = squaresToClear + 1
         bombfield.append(rowList)
-    printfield(bombfield)
+    #printfield(bombfield)
 def printfield(bombfield):
     for rowList in bombfield:
         print(rowList)
@@ -42,3 +42,43 @@ def on_click(event):
     square = event.widget
     row = int(square.grid_info()["row"])
     column = int(square.grid_info()["column"])
+    currentText = square.cget("text")
+    if gameOver == False:
+        if bombfield[row][column] == 1:
+            gameOver = True
+            square.config(bg = "red")
+            print("Game over! You hit a bomb.")
+            print("Youre score was:", score)
+        elif currentText == "    ":
+            square.config(bg = "brown")
+            totalBombs = 0
+            if row < 9:
+                if bombfield[row+1][column] == 1:
+                    totalBombs = totalBombs + 1
+                if bombfield[row-1][column] == 1:
+                    totalBombs = totalBombs + 1
+            if column > 0:
+                if bombfield[row][column-1] == 1:
+                    totalBombs = totalBombs + 1
+            if column < 9:
+                if bombfield[row][column+1] == 1:
+                    totalBombs = totalBombs + 1
+            if row > 0 and column > 0:
+                if bombfield[row-1][column-1] == 1:
+                    totalBombs = totalBombs + 1
+            if row < 9 and column > 0:
+                if bombfield[row+1][column-1] == 1:
+                    totalBombs = totalBombs + 1
+            if row > 0 and column < 9:
+                if bombfield[row-1][column+1] == 1:
+                    totalBombs = totalBombs + 1
+            square.config(text = " " + str(totalBombs) + " ")
+            squaresToClear = squaresToClear - 1
+            score = score + 1
+            if squaresToClear == 0:
+                gameOver = True
+                print("Well done! You found all the safe squares!")
+                print("Your score was:", score)
+play_bombdodger
+            
+                    
