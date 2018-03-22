@@ -18,7 +18,7 @@ while guess != password:
     if aliens > 7400000000:
         break
     print()
-    print("Password hint: The things that are attacking us.)")
+    print("Password hint: The thing attacking us.")
     print()
     guess = input("Quick! Please enter the password: ").upper()
 if aliens > 7400000000:
