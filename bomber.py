@@ -20,7 +20,7 @@ def create_bombfield(bombfield):
                 rowList.append(0)
                 squaresToClear = squaresToClear + 1
         bombfield.append(rowList)
-    printfield(bombfield)
+#    printfield(bombfield)
 def printfield(bombfield):
     for rowList in bombfield:
         print(rowList)
